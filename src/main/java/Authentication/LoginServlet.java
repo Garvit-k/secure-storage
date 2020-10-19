@@ -6,11 +6,14 @@ import database.DBHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
@@ -51,7 +54,11 @@ public class LoginServlet extends HttpServlet {
 
         PrintWriter writer = response.getWriter();
         response.setContentType("text/HTML");
-
+        response.addCookie(setCookie((String) object.get("name")));
+        Cookie cookies[] = request.getCookies();
+        for (Cookie c: cookies) {
+            System.out.println("Cookie Value "+c.getValue());
+        }
         writer.println(htmlResponse);
 
     }
@@ -73,6 +80,19 @@ public class LoginServlet extends HttpServlet {
         htmlRespone+="</body>";
         htmlRespone += "</html>";
         return htmlRespone;
+    }
+
+    Cookie setCookie(String name) {
+        Cookie cookie = null;
+        try {
+            cookie = new Cookie("name", URLEncoder.encode( name, "UTF-8" ));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Cookie "+ cookie.toString());
+        System.out.println("Cookie "+cookie.getName());
+        cookie.setMaxAge(60);
+        return cookie;
     }
 
 //    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
