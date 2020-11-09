@@ -37,13 +37,13 @@ public class QueriesServlet extends HttpServlet {
         PrintWriter writer = response.getWriter();
         response.setContentType("text/HTML");
         writer.println(htmlResponse);
-
     }
     public String buildResponse(boolean isSuccess,String name) {
 
         String htmlRespone = "<!DOCTYPE html>";
         htmlRespone+="<html>";
-        htmlRespone+="<title>Login Form</title>";
+        htmlRespone+="<title>Secure Storage - Request submitted</title>";
+        htmlRespone+="<head><meta http-equiv=\"refresh\" content=\"5; URL=contact.html\" /></head>";
         htmlRespone+="<body style=\"text-align=center\">";
 
         if(isSuccess) {

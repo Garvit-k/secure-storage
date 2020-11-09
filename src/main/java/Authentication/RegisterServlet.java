@@ -53,11 +53,12 @@ public class RegisterServlet extends HttpServlet {
 
         String htmlRespone = "<!DOCTYPE html>";
         htmlRespone+="<html>";
-        htmlRespone+="<title>Login Form</title>";
+        htmlRespone+="<title>Secure Storage - Registered</title>";
+        htmlRespone+="<head><meta http-equiv=\"refresh\" content=\"3; URL=index.html\" /></head>";
         htmlRespone+="<body style=\"text-align=center\">";
 
         if(isSuccess) {
-            htmlRespone += "<h1>Your ID has been Registered Successfully </h1><br/>";
+            htmlRespone += "<h1>Your ID has been Registered Successfully</h1><br/>";
         }
         else {
             htmlRespone += "<h1>"+name+"</h1>";
